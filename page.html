@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Underground Train Status</title>
+</head>
+<body>
+  <h1>Underground Train Status</h1>
+  <ul id="train-status"></ul>
+  <script>
+    const apiKey = 'YOUR_TFL_API_KEY';
+    const apiUrl = 'https://api.tfl.gov.uk/Line/Mode/tube/Status';
+
+    // Make a GET request to the TFL API to get the status of underground trains
+    fetch(apiUrl, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'app_id': apiKey.app_id,
+        'app_key': apiKey.app_key
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Loop through the array of train statuses
+        data.forEach(status => {
+          // Get the name of the train line
+          const trainLine = status.name;
+
+          // Get the current status of the train line
+          const trainStatus = status.lineStatuses[0].statusSeverityDescription;
+
+          // Create a new list item for the train line
+          const li = document.createElement('li');
+          li.innerHTML = `${trainLine}: ${trainStatus}`;
+
+          // Add the list item to the train status list
+          document.getElementById('train-status').appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
