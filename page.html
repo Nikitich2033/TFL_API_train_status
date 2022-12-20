@@ -7,7 +7,7 @@
   <h1>Underground Train Status</h1>
   <ul id="train-status"></ul>
   <script>
-    const apiKey = 'YOUR_TFL_API_KEY';
+    // const apiKey = 'd366f03f4a1f4abbaefa9e4ecfd2e2'; shest tree
     const apiUrl = 'https://api.tfl.gov.uk/Line/Mode/tube/Status';
 
     // Make a GET request to the TFL API to get the status of underground trains
@@ -16,7 +16,6 @@
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'app_id': apiKey.app_id,
-        'app_key': apiKey.app_key
       }
     })
       .then(response => response.json())
